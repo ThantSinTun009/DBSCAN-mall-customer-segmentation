@@ -25,7 +25,6 @@ if os.path.exists(logo_path):
 # st.sidebar.text("May Thaw Tar") 
 # st.sidebar.text("Peter Ling Mung") 
 
-
 # -----------------------------
 # Sidebar: Customer Inputs
 # -----------------------------
@@ -37,10 +36,10 @@ income = st.sidebar.slider("Annual Income (k$)", min_value=0, max_value=150, val
 spending_score = st.sidebar.slider("Spending Score (1-100)", min_value=1, max_value=100, value=50)
 gender = st.sidebar.selectbox("Gender", ['Male', 'Female'])
 
-
 # Map gender
 gender_num = 0 if gender == 'Male' else 1
 
+# user input dataframe
 new_data = pd.DataFrame({
     'Gender': [gender_num],
     'Age': [age],
@@ -49,25 +48,31 @@ new_data = pd.DataFrame({
     'Gender (Male:1, Female:0)': [gender_num]
 })
 
-# -----------------------------
+####################################################################################
+
 # Load DBSCAN pipeline
-# -----------------------------
+
 with open('dbscan_pipeline.pkl', 'rb') as f:
     db_pipeline = pickle.load(f)
 
-# -----------------------------
+####################################################################################
+
 # Load original data for visualization
-# -----------------------------
-org_df = pd.read_csv('mall_customer_processed.csv')  # Must include DBSCAN_Label
-X_orig = org_df[['Age','Annual Income (k$)','Spending Score (1-100)','Gender']]
+
+org_df = pd.read_csv('Mall_Customers.csv')  
+
+org_df['Gender'] = org_df['Gender'].map({'Male':1, 'Female':0})
+
+X_orig = org_df[['Age', 'Annual Income (k$)','Spending Score (1-100)', 'Gender']]
 
 # Transform original data
 X_pca = db_pipeline['PCA'].transform(db_pipeline['preprocessing'].transform(X_orig))
 labels_orig = db_pipeline['dbscan'].fit_predict(X_pca)
 
-# -----------------------------
+####################################################################################
+
 # Function to assign nearest cluster
-# -----------------------------
+
 def assign_dbscan_cluster(new_point, X_pca, labels_orig, eps=0.35):
     clusters = np.unique(labels_orig[labels_orig != -1])
     min_dist = float('inf')
