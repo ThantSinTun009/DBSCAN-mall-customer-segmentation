@@ -37,7 +37,7 @@ spending_score = st.sidebar.slider("Spending Score (1-100)", min_value=1, max_va
 gender = st.sidebar.selectbox("Gender", ['Male', 'Female'])
 
 # Map gender
-gender_num = 0 if gender == 'Male' else 1
+gender_num = 1 if gender == 'Male' else 0
 
 # user input dataframe
 new_data = pd.DataFrame({
