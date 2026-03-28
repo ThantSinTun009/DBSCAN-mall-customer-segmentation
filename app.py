@@ -42,6 +42,7 @@ gender = st.sidebar.selectbox("Gender", ['Male', 'Female'])
 gender_num = 0 if gender == 'Male' else 1
 
 new_data = pd.DataFrame({
+    'Gender': [gender_num],
     'Age': [age],
     'Annual Income (k$)': [income],
     'Spending Score (1-100)': [spending_score],
