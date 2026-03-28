@@ -22,9 +22,11 @@ org_df = df.copy()
 
 # Pipeline
 numerical = ['Age', 'Annual Income (k$)', 'Spending Score (1-100)']
+categorical = ['Gender']
 
 preprocessor = ColumnTransformer([
-    ("Scaler", StandardScaler(), numerical) # Scale
+    ("Scaler", StandardScaler(), numerical), # Scale
+    ("Categorical", "passthrough", categorical)
     ])
 
 db_pipeline = Pipeline([
