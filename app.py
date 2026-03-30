@@ -12,7 +12,7 @@ st.title("DBSCAN Clustering (Visualization)")
 # -----------------------------
 logo_path = "images/parami.jpg"
 
-st.sidebar.markdown("# **Group Members**")
+st.sidebar.markdown("## **Advanced Machine Learning**")
 
 if os.path.exists(logo_path):
     st.sidebar.image(logo_path, width=150)
