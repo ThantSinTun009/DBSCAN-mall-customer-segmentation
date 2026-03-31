@@ -105,7 +105,7 @@ if st.button("Predict Cluster"):
     # Short descriptions for clusters
     cluster_descriptions = {
     -1: "Outliers: Mixed customers with varied age, income, and spending", # 19,, 16, 75
-    0: "Young, Low income, High spending customers",
+    0: "Young, Low income, High spending",
     1: "Middle-aged, Medium income, Moderate spending",
     2: "Young adults, Medium income, High spending",
     3: "Middle-aged, High income, Low spending"
@@ -115,6 +115,7 @@ if st.button("Predict Cluster"):
     st.subheader("Prediction Result:")
     if new_label == -1:
         st.warning("The new customer is considered NOISE (outlier).")
+        st.info(f"{cluster_descriptions[new_label]} Customers.")
     else:
         st.success(f"The new customer belongs to Cluster {new_label}.")
         st.info(f"This Cluster belongs to {cluster_descriptions[new_label]} Customers.")
