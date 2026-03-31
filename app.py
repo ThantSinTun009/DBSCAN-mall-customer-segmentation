@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
 import os
 
 st.title("DBSCAN Clustering (Visualization)")
