@@ -55,7 +55,7 @@ streamlit run app.py
 
 ---
 
-## Authors
+## Group Members
 
 - Eh Si Si
 - Peter Ling Mung
