@@ -115,7 +115,7 @@ if st.button("Predict Cluster"):
     st.subheader("Prediction Result:")
     if new_label == -1:
         st.warning("The new customer is considered NOISE (outlier).")
-        st.info(f"{cluster_descriptions[new_label]} Customers.")
+        st.info(f"{cluster_descriptions[new_label]}")
     else:
         st.success(f"The new customer belongs to Cluster {new_label}.")
         st.info(f"This Cluster belongs to {cluster_descriptions[new_label]} Customers.")
