@@ -18,7 +18,7 @@ We also compare DBSCAN with KMeans using **Silhouette Score** to evaluate cluste
 ## Project Structure
 
 ```bash
-mall_customer_segmentation/
+DBSCAN-mall-customer-segmentation/
 
 ├── notebook.ipynb              # Analysis, Preprocessing, PCA, Comparison with KMeans
 
@@ -55,6 +55,11 @@ streamlit run app.py
 
 ---
 
-## Author & Co-authors
+## Authors
 
-Thant Sin Tun | Machine Learning Enthusiast
+- Eh Si Si
+- Peter Ling Mung
+- May Thaw Tar
+- May Thiri Phyoe
+- Yin Min Han
+- Thant Sin Tun
