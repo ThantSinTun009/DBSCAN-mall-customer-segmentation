@@ -71,36 +71,32 @@ labels_orig = db_pipeline['dbscan'].fit_predict(X_pca)
 
 ####################################################################################
 
-# Function to assign nearest cluster
 
-def assign_dbscan_cluster(new_point, X_pca, labels_orig, eps=0.35):
-    clusters = np.unique(labels_orig[labels_orig != -1])
-    min_dist = float('inf')
-    assigned_cluster = -1
-    
-    for c in clusters:
-        cluster_points = X_pca[labels_orig == c]
-        dist = np.min(np.linalg.norm(cluster_points - new_point, axis=1))
-        if dist < min_dist:
-            min_dist = dist
-            assigned_cluster = c
-    
-    # Only assign if within eps distance
-    if min_dist <= eps:
-        return assigned_cluster
-    else:
-        return -1  # still considered noise
+# -----------------------------
+# Train KNN on DBSCAN clusters
+# -----------------------------
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_pca, labels_orig)
 
 # -----------------------------
 # Predict button
 # -----------------------------
 if st.button("Predict Cluster"):
 
-    # Transform new data
+    # Transform new customer
     transformed = db_pipeline['PCA'].transform(db_pipeline['preprocessing'].transform(new_data))
 
-    # Assign cluster
-    new_label = assign_dbscan_cluster(transformed[0], X_pca, labels_orig, eps=0.35)
+    # KNN nearest cluster
+    distances, indices = knn.kneighbors(transformed)
+    predicted_label = knn.predict(transformed)[0]
+
+    # Apply distance threshold for noise
+    eps = 0.35
+    if distances[0][0] > eps:
+        new_label = -1  # treat as noise
+    else:
+        new_label = predicted_label
+
 
     # Short descriptions for clusters
     cluster_descriptions = {
