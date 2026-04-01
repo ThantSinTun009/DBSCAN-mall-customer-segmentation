@@ -13,7 +13,8 @@ The goal is to group customers based on their:
 
 We also compare DBSCAN with KMeans using **Silhouette Score** to evaluate clustering quality.
 
-Streamlit Demo: https://dbscan-mall-customer-segmentation.streamlit.app/ 
+### Streamlit Demo: https://dbscan-mall-customer-segmentation.streamlit.app/ 
+
 ---
 
 ## Project Structure
